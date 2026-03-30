@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin — Messages</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:24px;background:#0b0b10;color:#f5f5ff}
+    h1{margin:0 0 6px 0;font-size:22px}
+    .meta{color:#aaa; margin-bottom:18px}
+    table{width:100%;border-collapse:collapse;background:#121220;border:1px solid rgba(255,255,255,.08)}
+    th,td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+    th{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#9afaf4;text-align:left;background:rgba(0,255,240,.06)}
+    td{font-size:13px;color:#e8e8ff}
+    .small{font-size:12px;color:#aaa;white-space:nowrap}
+    .msg{white-space:pre-wrap;word-break:break-word;max-width:720px}
+  </style>
+</head>
+<body>
+  <h1>Messages</h1>
+  <div class="meta">Visitors: <b>{{ visitors }}</b> · Total messages: <b>{{ contacts|length }}</b></div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Created</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Message</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in contacts %}
+      <tr>
+        <td class="small">{{ c.id }}</td>
+        <td class="small">{{ c.created_at }}</td>
+        <td>{{ c.name }}</td>
+        <td>{{ c.email }}</td>
+        <td class="msg">{{ c.message }}</td>
+      </tr>
+      {% endfor %}
+      {% if contacts|length == 0 %}
+      <tr><td colspan="5" class="small">No messages yet.</td></tr>
+      {% endif %}
+    </tbody>
+  </table>
+</body>
+</html>
+
